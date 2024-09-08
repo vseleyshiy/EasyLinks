@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyLinks</title>
+    <script type="text/javascript" src="eel.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="img/icon.ico">
+    <link rel="short icon" type="image/png" href="img/icon.png">
+</head>
+
+<body>
+    <div class="wrapper">
+        <dialog class="modal">
+            <div class="modal__inner">
+                <span class="modal__error"></span>
+                <div class="modal__form">
+                    <input class="modal__input" type="text" placeholder="Enter a link with https:// protocol">
+                    <div class="modal__buttons">
+                        <button class="modal__button" id="close">
+                            Close
+                        </button>
+                        <button class="modal__button" onclick="modal_validate()">
+                            Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </dialog>
+        <div class="windows"></div>
+        <div class="container">
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+    <script src="js/modal.js"></script>
+</body>
+
+</html>
