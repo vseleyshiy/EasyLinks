@@ -1,0 +1,15 @@
+{
+	"randomizer": [],
+	"pomodoro": {
+		"work_time": 25,
+		"break_time": 5,
+		"long_break_time": 15,
+		"rounds_per_day": 16,
+		"last_session": "work",
+		"last_time": "",
+		"last_rounds": 0
+	},
+	"default_dir": "Main",
+	"theme_color": "#3b3b3b",
+	"links": {}
+}

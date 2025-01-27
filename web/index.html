@@ -1,40 +1,199 @@
 <!DOCTYPE html>
 <html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>EasyLinks</title>
+		<script type="text/javascript" src="eel.js"></script>
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="icon" type="image/png" href="img/icon.png" />
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EasyLinks</title>
-    <script type="text/javascript" src="eel.js"></script>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" type="image/x-icon" href="img/icon.ico">
-    <link rel="short icon" type="image/png" href="img/icon.png">
-</head>
-
-<body>
-    <div class="wrapper">
-        <dialog class="modal">
-            <div class="modal__inner">
-                <span class="modal__error"></span>
-                <div class="modal__form">
-                    <input class="modal__input" type="text" placeholder="Enter a link with https:// protocol">
-                    <div class="modal__buttons">
-                        <button class="modal__button" id="close">
-                            Close
-                        </button>
-                        <button class="modal__button" onclick="modal_validate()">
-                            Add
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </dialog>
-        <div class="windows"></div>
-        <div class="container">
-        </div>
-    </div>
-    <script src="js/script.js"></script>
-    <script src="js/modal.js"></script>
-</body>
-
+	<body>
+		<div class="wrapper">
+			<dialog id="add_link_modal" class="modal">
+				<div class="modal__inner">
+					<span id="add_link_error" class="modal__error"></span>
+					<div class="modal__form">
+						<div class="form__row">
+							<label for="add_link_name">Название:</label>
+							<input
+								id="add_link_name"
+								class="modal__input"
+								type="text"
+								placeholder="Придумайте название для ссылки"
+							/>
+						</div>
+						<div class="form__row">
+							<label for="add_link_link">Ссылка:</label>
+							<input
+								id="add_link_link"
+								class="modal__input"
+								type="text"
+								value="https://"
+								placeholder="Введите ссылку с протоколом https://"
+							/>
+						</div>
+						<div class="modal__buttons">
+							<button class="modal__button" onclick="add_link()">
+								Добавить
+							</button>
+							<button class="modal__button" id="add_link_close">Закрыть</button>
+						</div>
+					</div>
+				</div>
+			</dialog>
+			<dialog id="add_dir_modal" class="modal">
+				<div class="modal__inner">
+					<span id="add_dir_error" class="modal__error"></span>
+					<div class="modal__form">
+						<div class="form__row">
+							<label for="add_dir_name">Название:</label>
+							<input
+								id="add_dir_name"
+								class="modal__input"
+								type="text"
+								placeholder="Придумайте название для папки"
+							/>
+						</div>
+						<div class="modal__buttons">
+							<button class="modal__button" onclick="add_dir()">
+								Добавить
+							</button>
+							<button class="modal__button" id="add_dir_close">Закрыть</button>
+						</div>
+					</div>
+				</div>
+			</dialog>
+			<dialog id="randomizer_modal" class="modal">
+				<div class="modal__inner"></div>
+			</dialog>
+			<dialog id="pomodoro_modal" class="modal">
+				<div class="modal__inner">
+					<span id="pomodoro_error" class="modal__error"></span>
+					<div class="modal__form">
+						<div class="pomodoro__content">
+							<div class="pomodoro__timer"></div>
+							<div class="pomodoro__rounds-container"></div>
+							<div class="modal__icons">
+								<button class="modal__icon" id="pomodoro_reset_all">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										class="modal__icon-img lucide lucide-list-restart"
+									>
+										<path d="M21 6H3" />
+										<path d="M7 12H3" />
+										<path d="M7 18H3" />
+										<path
+											d="M12 18a5 5 0 0 0 9-3 4.5 4.5 0 0 0-4.5-4.5c-1.33 0-2.54.54-3.41 1.41L11 14"
+										/>
+										<path d="M11 10v4h4" />
+									</svg>
+								</button>
+								<button class="modal__icon" id="pomodoro_reset">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										class="modal__icon-img lucide lucide-rotate-ccw"
+									>
+										<path
+											d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"
+										/>
+										<path d="M3 3v5h5" />
+									</svg>
+								</button>
+								<button class="modal__icon" id="pomodoro_back">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										class="modal__icon-img lucide lucide-step-back"
+									>
+										<line x1="18" x2="18" y1="20" y2="4" />
+										<polygon points="14,20 4,12 14,4" />
+									</svg>
+								</button>
+								<button class="modal__icon" id="pomodoro_forward">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										class="modal__icon-img lucide lucide-step-forward"
+									>
+										<line x1="6" x2="6" y1="4" y2="20" />
+										<polygon points="10,4 20,12 10,20" />
+									</svg>
+								</button>
+							</div>
+							<div class="pomodoro__types">
+								<div class="pomodoro__type" onclick="change_type_on_work()">
+									Работа
+								</div>
+								<div class="pomodoro__type" onclick="change_type_on_break()">
+									Перерыв
+								</div>
+								<div
+									class="pomodoro__type"
+									onclick="change_type_on_long_break()"
+								>
+									Длинный перерыв
+								</div>
+							</div>
+						</div>
+						<div class="modal__buttons">
+							<button
+								id="pomodoro_start"
+								class="start__button"
+								onclick="start_pomodoro()"
+							>
+								Запустить
+							</button>
+							<button id="pomodoro_stop" class="start__button">
+								Остановить
+							</button>
+							<button class="modal__button" id="pomodoro_close">Закрыть</button>
+						</div>
+					</div>
+				</div>
+			</dialog>
+			<div class="windows"></div>
+			<div class="container"></div>
+		</div>
+		<script src="./HackTimer-master/HackTimer.js"></script>
+		<script src="js/global.js"></script>
+		<script src="js/modal.js"></script>
+		<script src="js/menus.js"></script>
+		<script src="js/randomizer.js"></script>
+		<script src="js/pomodoro.js"></script>
+		<script src="js/settings.js"></script>
+		<script src="js/utils.js"></script>
+		<script src="js/script.js"></script>
+	</body>
 </html>
