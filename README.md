@@ -1,24 +1,43 @@
 # EasyLinks
-This is a program that automatically opens _all your links_ that you have specified.
+Основная функция этой программы - автоматическое открытие _всех ваших ссылок_, которые вы укажите.
 
-## Get started
-Install all the necessary dependencies from the __requirements.txt__ file into your venv folder.
+## Старт
+Для установки всех нужных зависимостей и создания виртуального окружения сделайте следующее:
+В терминале выберите установленную программу
+```
+cd "Путь к программе, оканчивающийся на /EasyLinks-main"
+```
+```
+python -m venv venv
+```
+Активация виртуального окружения на Windows (Для других ОП поищите в интернете):
+- Для Windows (cmd):
+```
+venv\Scripts\activate.bat
+```
+- Для Windows (PowerShell):
+```
+venv\Scripts\activate.ps1
+```
+Установите все необходимые зависимости из файла __requirements.txt__ в папку venv.
 ```
 pip install -r requirements.txt
 ```
 
-For the program to work, you need to run the __main.py__ file in the root of the folder.
+Для запуска программы необходимо запустить файл __main.py__ в корне папки.
 
-After launching the application, you will need to indicate the number of links you want to add and then enter them into a special input field.
+После запуска приложения вам нужно будет указать количество ссылок, которые вы хотите добавить, а затем ввести их в специальные поля для ввода.
 
-Once you have entered the links, restart the program using the convenient button: you can now use this application.
+После того, как вы ввели ссылки, перезапустите программу с помощью удобной кнопки: теперь вы можете использовать это приложение.
 
-## Functions
+## Функции
+- Вы можете открыть конкретную ссылку или открыть все сразу.
+- Вы можете удалять или добавлять ссылки.
+- Вы можете создать отдельные папки для хранения разных ссылок.
+- Так же в приложении есть рандомайзер, который случайно генерирует фразу: "Спокойной ночи, _ваше-слово_ снов!". При помощи неё можно удобно желать спокойной ночи каждый день своим родным и близким <3 Если хотите ввести новые слова, зайдите в корневую папку программы -> database.json -> измените строку "randomizer": [_много непонятных символов_], на "randomizer": [],
+- В приложении присутствует Pomodoro Timer, которым можно удобно пользоваться.
+- Так же там есть удобные настройки, при помощи которых можно изменить тему приложения или настроить под себя Pomodoro Timer.
 
-* You can open a specific link or open all at once.
+## Контакты
 
-* You can delete or add links.
-
-## Contacts
-
-[developer website and donates :)](https://vseleyshiy.github.io/visitka/)
+[моя визитка для контакта :)](https://vseleyshiy.github.io/visitka/)
